@@ -1,0 +1,49 @@
+# --- IDE & System Files ---
+.idea
+*.iml
+.DS_Store
+xcuserdata
+captures
+.tours
+
+# --- Gradle & Kotlin ---
+.gradle
+.kotlin
+.konan/
+**/build/
+!src/**/build/
+local.properties
+
+# --- Android Specific ---
+.externalNativeBuild
+.cxx
+*.apk
+*.aar
+*.bundle
+*.dex
+*.class
+
+# --- iOS / Xcode Specific ---
+**/DerivedData/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# --- Compose Multiplatform / Desktop ---
+**/build/compose/binaries/
+**/build/distributions/
+
+# --- Web (JS / Wasm) ---
+node_modules/
+.tours
+package-lock.json
+
+# --- Secrets & Binary Artifacts ---
+*.keystore
+*.jks
+.env
+*.klib
+*.crash

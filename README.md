@@ -19,12 +19,12 @@ Important: You must insert your own NewsAPI API key into NetworkModules.kt (see 
 
 ## Repository layout (high level)
 - composeApp/ — Android (and Compose Multiplatform UI entrypoints)
-  - src/...
+    - src/...
 - iosApp/ — Xcode iOS app (Swift/SwiftUI entrypoint)
-  - iosApp/ (Xcode project/workspace)
+    - iosApp/ (Xcode project/workspace)
 - shared/ — Kotlin Multiplatform shared code
-  - src/commonMain/kotlin — shared business logic, Koin init, Ktor modules, news feature
-  - src/androidMain, iosMain, jvmMain, etc. — platform specific implementations if present
+    - src/commonMain/kotlin — shared business logic, Koin init, Ktor modules, news feature
+    - src/androidMain, iosMain, jvmMain, etc. — platform specific implementations if present
 
 (Explore the `shared` module to find the news feature, DI modules, and network code.)
 
@@ -140,9 +140,3 @@ Contributions and fixes are welcome. If you plan to extend the project for produ
 ## License
 This repository is provided as-is for learning and bootstrapping Kotlin Multiplatform projects. Check the repository for a LICENSE file (or add one) before using in production.
 
----
-
-If you'd like, I can:
-- Add a short CONTRIBUTING.md with development tips,
-- Create a small checklist of steps to switch from the example NewsAPI to your own backend,
-- Or show the exact path and snippet from your `NetworkModules.kt` if you want me to edit it directly (I can prepare a patch that replaces the placeholder with an environment-based approach).

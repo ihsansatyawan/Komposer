@@ -1,0 +1,22 @@
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+import SwiftUI
+import UIKit
+
+/// Usage:
+/// SwiftUI: `ImageAsset.myImage` or `ImageAsset.Icons.arrow`
+/// UIKit:   `ImageAsset.myImageUI` or `ImageAsset.Icons.arrowUI`
+internal enum ImageAsset {
+  {% macro enumBlock assets %}
+  {% for asset in assets %}
+  {% if asset.type == "image" %}
+  internal static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord}} = Image("{{asset.value}}")
+  internal static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord}}UI = UIImage(named: "{{asset.value}}")!
+  {% elif asset.items %}
+  internal enum {{asset.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+    {% filter indent:2 %}{% call enumBlock asset.items %}{% endfilter %}
+  }
+  {% endif %}
+  {% endfor %}
+  {% endmacro %}
+  {% call enumBlock catalogs.first.assets %}
+}

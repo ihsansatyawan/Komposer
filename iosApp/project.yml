@@ -1,0 +1,57 @@
+name: Komposer
+options:
+  bundleIdPrefix: com.sleepingcats
+  
+configs:
+    AppDev: debug
+    AppRelease: release
+
+settings:
+  base:
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+targets:
+  iosApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.2"
+    sources:
+      - iosApp
+      - Configuration
+
+    preBuildScripts:
+      - name: "Build KMP Shared Module"
+        script: |
+          if [ "YES" = "$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED" ]; then
+            echo "Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\""
+            exit 0
+          fi
+          cd "$SRCROOT/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+        shell: /bin/zsh
+        basedOnDependencyAnalysis: NO
+
+    postBuildScripts:
+      - name: SwiftGen
+        path: swiftgen.sh
+        basedOnDependencyAnalysis: NO
+        showEnvVars: YES
+
+    dependencies:
+      - framework: ../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)/Shared.framework
+        embed: true
+
+    configFiles:
+      AppDev: Configuration/AppDev.xcconfig
+      AppRelease: Configuration/AppRelease.xcconfig
+
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: NO
+        FRAMEWORK_SEARCH_PATHS: $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)
+
+      configs:
+        AppDev:
+          INFOPLIST_FILE: iosApp/SupportingFiles/InfoDev.plist
+        AppRelease:
+          INFOPLIST_FILE: iosApp/SupportingFiles/Info.plist

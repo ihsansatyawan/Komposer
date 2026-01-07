@@ -79,7 +79,6 @@ private struct NewsListView: View {
                 Text(Greeting().greet())
                 Text("Here is today's news :")
             }
-            .frame(width: .infinity)
 
             Spacer()
                 .frame(height: 16)
@@ -118,7 +117,6 @@ private struct NewsItem: View {
                     EmptyView()
                 }
             }
-            .frame(width: .infinity)
 
             Text(news.title)
                 .font(.title2)

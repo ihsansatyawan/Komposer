@@ -31,6 +31,8 @@ local.properties
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+**/project.xcworkspace/contents.xcworkspacedata
+**/project.pbxproj
 
 # --- Compose Multiplatform / Desktop ---
 **/build/compose/binaries/

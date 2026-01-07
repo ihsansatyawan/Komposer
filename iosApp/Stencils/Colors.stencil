@@ -1,0 +1,21 @@
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+import SwiftUI
+import UIKit
+
+/// Usage:
+/// SwiftUI: `ColorAsset.myColor`
+/// UIKit:   `ColorAsset.myColorUI`
+internal enum ColorAsset {
+  {% for asset in catalogs.first.assets %}
+  {% if asset.type == "color" %}
+  internal static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord}} = Color("{{asset.name}}")
+  internal static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord}}UI = UIColor(named: "{{asset.name}}")!
+  {% endif %}
+  {% endfor %}
+}
+
+internal extension Color {
+  static func fromAsset(_ asset: Color) -> Color {
+    return asset
+  }
+}

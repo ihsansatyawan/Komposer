@@ -1,0 +1,11 @@
+xcassets:
+  - inputs:
+      - iosApp/Resources/Colors/Colors.xcassets
+    outputs:
+      - templatePath: Stencils/Colors.stencil
+        output: iosApp/Resources/Colors/Colors.swift
+  - inputs:
+      - iosApp/Resources/Images/Images.xcassets
+    outputs:
+      - templatePath: Stencils/Images.stencil
+        output: iosApp/Resources/Images/Images.swift
